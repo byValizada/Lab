@@ -136,10 +136,13 @@ bütün teksturalar repozitoriyanın içindədir.
 
 ---
 
-## Lisenziya və atribusiya
+## Lisenziya
 
-Kənar kod və aktivlərin lisenziyaları: [`UCUNCU_TEREF.md`](UCUNCU_TEREF.md)
-(Three.js — MIT · PBR teksturalar və HDRI — CC0 / Poly Haven).
+Layihənin öz materialları — generatorlar, 3D dizayner, hesablama modeli, sənəd
+mətni, sxemlər və renderlər — **MIT** lisenziyası altındadır: [`LICENSE`](LICENSE).
+Yəni sərbəst istifadə, dəyişdirmə və paylaşma mümkündür; şərt yalnız müəllif
+hüququ bildirişinin saxlanmasıdır.
 
-Layihənin öz materialları (sənəd mətni, hesablama modeli, generatorlar, sxemlər,
-renderlər) üçün lisenziya hələ təyin edilməyib.
+Repozitoriyaya daxil edilmiş üçüncü tərəf komponentlər öz lisenziyaları altında
+qalır — [`UCUNCU_TEREF.md`](UCUNCU_TEREF.md):
+Three.js r128 — MIT · PBR teksturalar və HDRI — CC0 1.0 (Poly Haven).

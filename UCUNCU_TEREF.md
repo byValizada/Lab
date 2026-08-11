@@ -1,8 +1,10 @@
 # Üçüncü tərəf komponentlər və atribusiya
 
-Bu layihə aşağıdakı kənar kod və aktivlərdən istifadə edir. Hər biri öz
-lisenziyası altında paylanır; bu fayl həmin lisenziyaların tələb etdiyi
-müəllif hüququ bildirişlərini saxlayır.
+Layihənin öz materialları MIT lisenziyası altındadır — bax: [`LICENSE`](LICENSE).
+
+Bu fayl isə repozitoriyaya daxil edilmiş **kənar** kod və aktivləri sadalayır.
+Hər biri öz lisenziyası altında paylanır; aşağıda həmin lisenziyaların tələb
+etdiyi müəllif hüququ bildirişləri saxlanılır.
 
 ---
 
