@@ -76,9 +76,10 @@ python3 teqdimat_qur.py   # teqdimat.html-i qurur
 > macOS və bir çox Linux distributivində `python` adlı əmr yoxdur — ona görə
 > yuxarıda `python3` istifadə olunur.
 
-`teqdimat_qur.py` rəqəmləri `sened_qur.py`-dən import edir, ona görə PDF ilə təqdimat
-həmişə eyni büdcəni göstərir. (İdxalın yan təsiri kimi PDF də yenidən qurulur —
-bu qəsdəndir: təqdimat heç vaxt köhnə büdcə göstərə bilmir.)
+Ardıcıllıq vacibdir: `teqdimat_qur.py` büdcə rəqəmlərini `sened_qur.py`-dən,
+səhifə sayını isə qurulmuş PDF-dən oxuyur — ona görə PDF-dən sonra işlədilməlidir.
+Beləliklə PDF ilə təqdimat heç vaxt fərqli rəqəm göstərə bilmir.
+
 Renderləri yeniləmək üçün 3D dizaynerdə səhnəni istədiyiniz bucaqdan qurub
 `4K render` düyməsini basın və faylı `renderler/` qovluğuna qoyun.
 
@@ -87,10 +88,9 @@ Renderləri yeniləmək üçün 3D dizaynerdə səhnəni istədiyiniz bucaqdan q
 1. 3D dizaynerdə otağı/mebeli dəyiş
 2. **Parametrlər** düyməsini bas → `lab_parametrleri.json` yüklənir
 3. Faylı layihə qovluğuna (bu qovluğa) kopyala
-4. `python3 sxem_qur.py && python3 teqdimat_qur.py`
+4. `python3 sxem_qur.py && python3 sened_qur.py && python3 teqdimat_qur.py`
 
-Sxemlər, PDF və təqdimat — hamısı yeni ölçüyə uyğun yenidən qurulur
-(`teqdimat_qur.py` PDF-i də qurduğu üçün `sened_qur.py`-ni ayrıca çağırmaq lazım deyil).
+Sxemlər, PDF və təqdimat — hamısı yeni ölçüyə uyğun yenidən qurulur.
 
 ---
 

@@ -33,9 +33,10 @@ with open(os.path.join(BASE, "lab_parametrleri.json"), encoding="utf-8") as fh:
 
 # sened_qur.py PDF-i də qurur; təqdimat üçün yalnız rəqəmlər lazımdır
 sys.path.insert(0, BASE)
-import sened_qur as S  # noqa: E402  (PDF-i yenidən qurur — rəqəmlər zəmanətli eyni olur)
+import sened_qur as S  # noqa: E402  — büdcə rəqəmləri PDF ilə eyni mənbədən gəlir
 
 M = S.money
+PDF_PAGES = S.pdf_page_count()          # mövcud PDF-dən oxunur, əl ilə yazılmır
 
 
 def autocrop(im, tol=26, pad=0.015):
@@ -117,8 +118,9 @@ def equip_table():
     rows.append((("Gözlənilməz xərclər üçün ehtiyat (8 %)", "", M(S.reserve)), ""))
     rows.append((("<b>SSENARİ B — TÖVSİYƏ OLUNAN</b>", "",
                   f"<b>{M(S.total_b)}</b>"), "total"))
+    pages = f" ({PDF_PAGES} səhifəlik PDF)" if PDF_PAGES else ""
     return table(["Kateqoriya", "Əsas mövqelər", "AZN"], rows,
-                 caption="Tam spesifikasiya — sənədin 9-cu bölməsi (17 səhifəlik PDF).",
+                 caption=f"Tam spesifikasiya — sənədin 9-cu bölməsi{pages}.",
                  aligns=["", "", "n"])
 
 

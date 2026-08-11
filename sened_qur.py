@@ -23,6 +23,7 @@ from reportlab.pdfbase.pdfmetrics import registerFontFamily
 from PIL import Image as PILImage
 import json
 import os
+import re
 import sys
 
 # Windows konsolu standart olaraq cp1252-dir və ş/ə hərflərində çökür.
@@ -1025,17 +1026,48 @@ def footer(canvas, doc):
     canvas.line(1.85*cm, 1.28*cm, A4[0]-1.85*cm, 1.28*cm)
     canvas.restoreState()
 
-out = os.path.join(BASE, "IT_Laboratoriya_Plani.pdf")
-doc = SimpleDocTemplate(out, pagesize=A4,
-                        leftMargin=1.85*cm, rightMargin=1.85*cm,
-                        topMargin=1.7*cm, bottomMargin=1.7*cm,
-                        title="İT Tədris Laboratoriyası — layihə və satınalma sənədi",
-                        author="Laboratoriya layihə qrupu")
-doc.build(story, onFirstPage=footer, onLaterPages=footer)
-print(f"OK  |  şrift: {FONT_USED}  |  parametrlər: {os.path.basename(PARAM_FILE)}")
-print(f"    Ssenari A: {money(sA)}  ·  B: {money(total_b)}  ·  C: {money(sC)} AZN")
-print(f"    5 illik TCO: {money(tco)} AZN  ({money(tco_seat)} AZN / iş yeri)")
-print(f"    Büdcədən kənar: {money(OUT_OF_SCOPE)} AZN  →  tam: {money(total_full)} AZN")
-print(f"    Audit: kritik +{money(AUDIT_CRIT)} · tövsiyə +{money(AUDIT_OPT)} AZN")
-print(f"    İŞƏ DÜŞƏN LABORATORİYA: {money(total_ready)} AZN  (tam əhatə {money(total_max)})")
-print(f"    {out}")
+PDF_PATH = os.path.join(BASE, "IT_Laboratoriya_Plani.pdf")
+
+
+def build_pdf(path=PDF_PATH):
+    """PDF-i qurur və qurulmuş səhifə sayını qaytarır.
+
+    Bu iş qəsdən funksiyanın içindədir: teqdimat_qur.py bu moduldan yalnız
+    RƏQƏMLƏRİ import edir. Modul gövdəsində qurulsaydı, hər idxal 1,2 MB-lıq
+    PDF-i yenidən yazardı (reportlab hər dəfə yeni CreationDate yazır → git-də
+    səbəbsiz binar dəyişiklik), sənəd baxıcıda açıq olsaydı isə PermissionError
+    verərdi.
+    """
+    doc = SimpleDocTemplate(path, pagesize=A4,
+                            leftMargin=1.85*cm, rightMargin=1.85*cm,
+                            topMargin=1.7*cm, bottomMargin=1.7*cm,
+                            title="İT Tədris Laboratoriyası — layihə və satınalma sənədi",
+                            author="Laboratoriya layihə qrupu")
+    doc.build(story, onFirstPage=footer, onLaterPages=footer)
+    return doc.page
+
+
+def pdf_page_count(path=PDF_PATH):
+    """Mövcud PDF-in səhifə sayı; fayl yoxdursa None.
+
+    Səhifə sayı sənəd böyüdükcə dəyişir, ona görə mətnə əl ilə yazılmır —
+    təqdimat vərəqi bu funksiyadan oxuyur.
+    """
+    try:
+        with open(path, "rb") as fh:
+            data = fh.read()
+    except FileNotFoundError:
+        return None
+    m = re.findall(rb"/Count\s+(\d+)", data)
+    return max(int(x) for x in m) if m else None
+
+
+if __name__ == "__main__":
+    pages = build_pdf()
+    print(f"OK  |  şrift: {FONT_USED}  |  parametrlər: {os.path.basename(PARAM_FILE)}")
+    print(f"    Ssenari A: {money(sA)}  ·  B: {money(total_b)}  ·  C: {money(sC)} AZN")
+    print(f"    5 illik TCO: {money(tco)} AZN  ({money(tco_seat)} AZN / iş yeri)")
+    print(f"    Büdcədən kənar: {money(OUT_OF_SCOPE)} AZN  →  tam: {money(total_full)} AZN")
+    print(f"    Audit: kritik +{money(AUDIT_CRIT)} · tövsiyə +{money(AUDIT_OPT)} AZN")
+    print(f"    İŞƏ DÜŞƏN LABORATORİYA: {money(total_ready)} AZN  (tam əhatə {money(total_max)})")
+    print(f"    {pages} səhifə  ·  {PDF_PATH}")
