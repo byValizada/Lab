@@ -1,10 +1,17 @@
 # Üçüncü tərəf komponentlər və atribusiya
 
-Layihənin öz materialları MIT lisenziyası altındadır — bax: [`LICENSE`](LICENSE).
+## Lisenziyanın əhatəsi
 
-Bu fayl isə repozitoriyaya daxil edilmiş **kənar** kod və aktivləri sadalayır.
-Hər biri öz lisenziyası altında paylanır; aşağıda həmin lisenziyaların tələb
-etdiyi müəllif hüququ bildirişləri saxlanılır.
+**MIT** ([`LICENSE`](LICENSE)) layihənin **öz** materiallarına aiddir:
+
+- generatorlar — `sened_qur.py`, `sxem_qur.py`, `teqdimat_qur.py`
+- 3D dizayner — `3d/index.html`, `3d/app.js` (`3d/vendor/` istisna olmaqla)
+- hesablama modeli və `lab_parametrleri.json`
+- sənəd mətni, sxemlər (`*.png`) və renderlər (`renderler/`)
+
+Repozitoriyaya daxil edilmiş **kənar** kod və aktivlər isə öz lisenziyaları
+altında qalır. Aşağıda həmin lisenziyaların tələb etdiyi müəllif hüququ
+bildirişləri saxlanılır.
 
 ---
 

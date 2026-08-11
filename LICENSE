@@ -19,14 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Bu lisenziya layihənin ÖZ materiallarına aiddir: generatorlar (sened_qur.py,
-sxem_qur.py, teqdimat_qur.py), 3D dizayner (3d/index.html, 3d/app.js),
-hesablama modeli, sənəd mətni, sxemlər və renderlər.
-
-Repozitoriyaya daxil edilmiş üçüncü tərəf komponentlər öz lisenziyaları altında
-qalır — bax: UCUNCU_TEREF.md
-  · 3d/vendor/  — Three.js r128, MIT (Copyright © 2010-2021 three.js authors)
-  · 3d/assets/  — PBR teksturalar və HDRI, CC0 1.0 (Poly Haven)
