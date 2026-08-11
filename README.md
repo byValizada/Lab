@@ -66,25 +66,31 @@ Gəzinti rejimində `W`/`A`/`S`/`D` + siçan.
 ### 2. Sənədin və təqdimatın yenidən qurulması
 
 ```bash
-pip install -r requirements.txt
-python sxem_qur.py
-python sened_qur.py
-python teqdimat_qur.py
+python3 -m pip install -r requirements.txt
+python3 sxem_qur.py       # üç sxemi çəkir
+python3 sened_qur.py      # 21 səhifəlik PDF-i qurur
+python3 teqdimat_qur.py   # teqdimat.html-i qurur
 ```
 
+> **Windows-da** `python3` əvəzinə `python` yazın. Python ≥ 3.9 tələb olunur.
+> macOS və bir çox Linux distributivində `python` adlı əmr yoxdur — ona görə
+> yuxarıda `python3` istifadə olunur.
+
 `teqdimat_qur.py` rəqəmləri `sened_qur.py`-dən import edir, ona görə PDF ilə təqdimat
-həmişə eyni büdcəni göstərir. Renderləri yeniləmək üçün 3D dizaynerdə səhnəni
-istədiyiniz bucaqdan qurub `4K render` düyməsini basın və faylı `renderler/`
-qovluğuna qoyun.
+həmişə eyni büdcəni göstərir. (İdxalın yan təsiri kimi PDF də yenidən qurulur —
+bu qəsdəndir: təqdimat heç vaxt köhnə büdcə göstərə bilmir.)
+Renderləri yeniləmək üçün 3D dizaynerdə səhnəni istədiyiniz bucaqdan qurub
+`4K render` düyməsini basın və faylı `renderler/` qovluğuna qoyun.
 
 ### 3. Otaq ölçüsü və ya düzülüş dəyişəndə
 
 1. 3D dizaynerdə otağı/mebeli dəyiş
 2. **Parametrlər** düyməsini bas → `lab_parametrleri.json` yüklənir
 3. Faylı layihə qovluğuna (bu qovluğa) kopyala
-4. `python sxem_qur.py && python sened_qur.py`
+4. `python3 sxem_qur.py && python3 teqdimat_qur.py`
 
-Bütün sxemlər və PDF yeni ölçüyə uyğun yenidən qurulur.
+Sxemlər, PDF və təqdimat — hamısı yeni ölçüyə uyğun yenidən qurulur
+(`teqdimat_qur.py` PDF-i də qurduğu üçün `sened_qur.py`-ni ayrıca çağırmaq lazım deyil).
 
 ---
 

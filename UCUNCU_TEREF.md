@@ -60,6 +60,28 @@ THE SOFTWARE.
 
 ---
 
+## SMAA — v2.8 (three.js portu daxilində)
+
+**Yer:** `3d/vendor/SMAAShader.js`, `3d/vendor/SMAAPass.js`
+**Lisenziya:** MIT (three.js portu) + orijinal SMAA lisenziyası
+**Mənbə:** https://github.com/iryoku/smaa/releases/tag/v2.8
+
+`SMAAShader.js` orijinal SMAA v2.8 alqoritminin WebGL portudur; `SMAAPass.js`
+isə orijinal paylanmadan gələn iki axtarış teksturasını (`area`, `search`)
+base64 PNG kimi öz içində daşıyır. Yəni portla yanaşı orijinal əsərin bir hissəsi
+də yenidən yayılır və müəllif hüququ bildirişi surətlərlə birlikdə saxlanmalıdır:
+
+```
+Copyright (C) 2013 Jorge Jimenez, Jose I. Echevarria,
+                   Belen Masia, Fernando Navarro, Diego Gutierrez
+```
+
+Bu bildiriş faylların öz başlığında yoxdur, ona görə burada qeyd olunur.
+`SimplexNoise.js` üçün atribusiya (Stefan Gustavson / Sean McCullough) faylın
+öz başlığında qorunub.
+
+---
+
 ## PBR teksturalar və HDRI
 
 **Yer:** `3d/assets/`
@@ -76,6 +98,19 @@ sky_1k.hdr
 
 Bu faylların mənşəyi `3d/app.js` içindəki şərhdən götürülüb. Aktivləri
 əvəz edərkən mənbə və lisenziyanı bu siyahıda yeniləyin.
+
+**Metadata təmizlənib.** Orijinal fayllar EXIF/XMP seqmentlərində istehsal
+alətinin işlətdiyi tam yerli fayl yollarını daşıyırdı (üçüncü şəxsin istifadəçi
+adı və daxili qovluq quruluşu). Bütün `APP1…APP15` və `COM` seqmentləri itkisiz
+silinib — piksel datası (sıxılmış SOS bloku) toxunulmayıb, yəni normal xəritələr
+artefakt almayıb. CC0 atribusiya tələb etmədiyi üçün bu, heç bir öhdəliyi pozmur;
+mənbə isə yuxarıda göstərilib.
+
+Yeni aktiv əlavə edərkən eyni təmizləməni aparın:
+
+```bash
+python -c "from PIL import Image; print(dict(Image.open('yeni.jpg').getexif()))"
+```
 
 ---
 
