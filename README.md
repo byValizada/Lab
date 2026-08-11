@@ -7,9 +7,12 @@ qərarverici üçün vizual təqdimat.
 **Otaq:** 12,5 × 7,5 × 2,8 m · 93,8 m² · 38 iş yeri · eyni anda 33 nəfər
 **İşə düşən paket:** 199 040 AZN · **5 illik TCO:** 198 460 AZN · **İcra:** 11–16 həftə
 
-> Sürətli baxış: [`teqdimat.html`](teqdimat.html) faylını brauzerdə açın —
-> renderlər, zonalar, bir dərsin gedişi, audit və büdcə tək səhifədədir.
-> Tam sənəd: [`IT_Laboratoriya_Plani.pdf`](IT_Laboratoriya_Plani.pdf) (21 səhifə).
+> **Sürətli baxış.** Kodla işləmirsinizsə, hazır faylları
+> [Releases](https://github.com/byValizada/Lab/releases/latest) bölməsindən yükləyin:
+> 21 səhifəlik PDF, tək səhifəlik vizual təqdimat və 11 render.
+>
+> Repozitoriyadan birbaşa: [`teqdimat.html`](teqdimat.html) (brauzerdə açın) ·
+> [`IT_Laboratoriya_Plani.pdf`](IT_Laboratoriya_Plani.pdf)
 
 | Məhsul | Nə edir |
 |---|---|
