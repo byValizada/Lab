@@ -21,6 +21,7 @@ from PIL import Image
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 except (AttributeError, OSError):
     pass
 
@@ -69,9 +70,25 @@ def autocrop(im, tol=26, pad=0.015):
                     min(w, x1 + mx), min(h, y1 + my)))
 
 
+RENDER_EXT = (".jpg", ".jpeg", ".png")
+
+
 def img(name, width):
-    """Renderi kəsib, verilmiş enə kiçildib data: URI kimi qaytarır."""
-    path = os.path.join(RENDERS, name + ".jpg")
+    """Renderi kəsib, verilmiş enə kiçildib data: URI kimi qaytarır.
+
+    Uzantı sabit deyil: 3D dizaynerin "4K render" düyməsi PNG yükləyir,
+    mövcud kadrlar isə JPEG-dir. Hər ikisi qəbul olunur ki, kadrı əvəz etmək
+    üçün formatı çevirmək lazım gəlməsin.
+    """
+    for ext in RENDER_EXT:
+        path = os.path.join(RENDERS, name + ext)
+        if os.path.exists(path):
+            break
+    else:
+        raise SystemExit(
+            f"Render tapılmadı: renderler/{name}.(jpg|jpeg|png)\n"
+            f"Ad teqdimat.src.html içindəki {{{{IMG:{name}:…}}}} yer tutucusu ilə "
+            f"hərfbəhərf üst-üstə düşməlidir.")
     im = autocrop(Image.open(path).convert("RGB"))
     if im.width > width:
         im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)

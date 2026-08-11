@@ -48,13 +48,17 @@ ayrı-ayrı yazıldığı üçün elektrik xətti (14 vs 16 kVt) və akustik tav
 
 ### 1. 3D Dizayner
 
-```bash
-3d/BASLAT.bat
-```
+**Windows:** `3d\BASLAT.bat` · **Linux / macOS:** `sh 3d/baslat.sh`
 
-Python varsa lokal server qaldırır (port 8123) və brauzeri açır; yoxdursa faylı
-birbaşa açır. Quraşdırma tələb olunmur — Three.js və bütün teksturalar `3d/vendor/`
-və `3d/assets/` içindədir, xarici şəbəkə sorğusu yoxdur.
+Hər ikisi lokal server qaldırır (port 8123) və brauzeri açır. Quraşdırma tələb
+olunmur — Three.js və bütün teksturalar `3d/vendor/` və `3d/assets/` içindədir,
+xarici şəbəkə sorğusu yoxdur.
+
+> **`3d/index.html` faylını ikiqat kliklə açmayın.** `file://` rejimində brauzer
+> CORS səbəbindən teksturaları və HDRI işıqlandırmanı yükləmir — səhnə boz və
+> işıqsız açılır. Tətbiq bu halda yuxarıda qırmızı xəbərdarlıq göstərir.
+> Skript işləməzsə əl ilə: `cd 3d && python3 -m http.server 8123`, sonra
+> brauzerdə <http://localhost:8123>.
 
 **İdarəetmə:** sol düymə seç · sürüklə yerini dəyiş · sağ düymə fırlat · çarx yaxınlaşdır ·
 `Q`/`E` döndər · `Del` sil · `Ctrl`+`D` kopyala · `Ctrl`+`Z` geri · `Esc` seçimi ləğv et.
@@ -80,8 +84,21 @@ Ardıcıllıq vacibdir: `teqdimat_qur.py` büdcə rəqəmlərini `sened_qur.py`-
 səhifə sayını isə qurulmuş PDF-dən oxuyur — ona görə PDF-dən sonra işlədilməlidir.
 Beləliklə PDF ilə təqdimat heç vaxt fərqli rəqəm göstərə bilmir.
 
-Renderləri yeniləmək üçün 3D dizaynerdə səhnəni istədiyiniz bucaqdan qurub
-`4K render` düyməsini basın və faylı `renderler/` qovluğuna qoyun.
+**Renderləri yeniləmək.** 3D dizaynerdə səhnəni istədiyiniz bucaqdan qurub
+`4K render` düyməsini basın — yüklənən fayl `laboratoriya-3840x2160.png` adlanır.
+Onu `renderler/` qovluğunda əvəz etdiyiniz kadrın **dəqiq adı ilə** saxlayın
+(məsələn `renderler/01_umumi.png` — uzantı JPEG olmaya bilər, generator
+`.jpg`, `.jpeg` və `.png` qəbul edir). Adlar `teqdimat.src.html` içindəki
+`{{IMG:…}}` yer tutucuları ilə hərfbəhərf üst-üstə düşməlidir:
+
+```
+01_umumi · 02_umumi_arxa · 03_pod_zonasi · 04_muellim · 05_telebe
+06_byod_elcatan · 07_iot · 08_server · 09_plan_gorunus
+10_zonalar_olculer · 11_isiqlanma_xeritesi
+```
+
+Sonra `python3 teqdimat_qur.py` işlədin. Ad səhv olarsa generator hansı faylın
+tapılmadığını yazıb dayanır.
 
 ### 3. Otaq ölçüsü və ya düzülüş dəyişəndə
 
@@ -96,20 +113,36 @@ Sxemlər, PDF və təqdimat — hamısı yeni ölçüyə uyğun yenidən qurulur
 
 ## Fayllar
 
+`▸` işarəsi qurulmuş faylı bildirir — əl ilə redaktə etməyin, növbəti qurulmada itir.
+
 ```
-lab_parametrleri.json        vahid həqiqət mənbəyi (3D-dən ixrac olunur)
+lab_parametrleri.json        vahid həqiqət mənbəyi (3D dizayner ixrac edir)
+
 sened_qur.py                 PDF generatoru
 sxem_qur.py                  sxem generatoru
-IT_Laboratoriya_Plani.pdf    nəticə sənəd
-otaq_plani.png               ┐
-texniki_arxitektura.png      ├ sxemlər (sxem_qur.py yaradır)
-is_muhiti_davamliligi.png    ┘
+teqdimat_qur.py              təqdimat generatoru
+teqdimat.src.html            təqdimatın MƏNBƏYİ — redaktə buradan gedir
+
+▸ IT_Laboratoriya_Plani.pdf  21 səhifəlik sənəd
+▸ otaq_plani.png             ┐
+▸ texniki_arxitektura.png    ├ sxemlər
+▸ is_muhiti_davamliligi.png  ┘
+▸ teqdimat.html              vizual təqdimat (şəkillər faylın içindədir)
+  renderler/                 3D səhnədən 11 kadr — təqdimata hopdurulur
+
 3d/index.html                3D dizaynerin interfeysi
 3d/app.js                    səhnə, mebel modelləri, mühəndis analizi
 3d/vendor/                   Three.js r128 + post-emal keçidləri (lokal)
 3d/assets/                   PBR teksturalar + HDRI (CC0, Poly Haven)
-3d/BASLAT.bat                lokal serveri qaldırır və brauzeri açır
+3d/BASLAT.bat                lokal server — Windows
+3d/baslat.sh                 lokal server — Linux / macOS
+
+LICENSE                      MIT
+UCUNCU_TEREF.md              kənar komponentlərin lisenziyaları
 ```
+
+> `teqdimat.body.html` `.gitignore`-dadır: `teqdimat.html` ilə eyni məzmunu
+> daşıyan törəmə fayldır, yalnız nəşr üçün lazımdır.
 
 ---
 

@@ -125,10 +125,29 @@ function clearGroup(g){
   while(g.children.length){ const c = g.children[0]; disposeTree(c); g.remove(c); }
 }
 
-/* ---------- PBR aktivləri (CC0 — Poly Haven) ---------- */
+/* ---------- PBR aktivləri (CC0 — Poly Haven) ----------
+   Fayl file:// ilə açılarsa, brauzer CORS səbəbindən assets/ qovluğunu
+   yükləmir və səhnə boz açılır. Əvvəllər bu SƏSSİZ baş verirdi — indi
+   istifadəçiyə səbəb və həll yolu göstərilir. */
+let assetFail = 0;
+function assetError(){
+  if(++assetFail !== 1) return;                 // banner bir dəfə göstərilir
+  const isFile = location.protocol === 'file:';
+  const b = document.createElement('div');
+  b.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:9999;padding:12px 18px;'
+    + 'background:#7d2320;color:#fff;font:13px/1.6 Segoe UI,sans-serif;text-align:center';
+  b.innerHTML = isFile
+    ? 'Səhnə natamam yükləndi: brauzer <b>file://</b> rejimində teksturaları '
+      + 'bloklayır (CORS). Lokal server lazımdır — <b>BASLAT.bat</b> '
+      + '(Windows) və ya <b>sh baslat.sh</b> (Linux/macOS) ilə açın.'
+    : 'Bəzi teksturalar yüklənmədi — <b>assets/</b> qovluğunun yerində '
+      + 'olduğunu yoxlayın.';
+  document.body.appendChild(b);
+}
+
 const texLoader = new THREE.TextureLoader();
 function tex(file, srgb, rx, ry){
-  const t = texLoader.load('assets/' + file);
+  const t = texLoader.load('assets/' + file, undefined, undefined, assetError);
   t.wrapS = t.wrapT = THREE.RepeatWrapping;
   t.anisotropy = 8;
   if(srgb) t.encoding = THREE.sRGBEncoding;
@@ -158,7 +177,7 @@ function loadEnvironment(done){
     scene.environment = pmrem.fromEquirectangular(hdr).texture;
     hdr.dispose(); pmrem.dispose();
     done();
-  }, undefined, ()=> done());   // HDRI yüklənməsə də tətbiq açılır
+  }, undefined, ()=>{ assetError(); done(); });   // HDRI yüklənməsə də tətbiq açılır
 }
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);

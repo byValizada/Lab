@@ -30,7 +30,12 @@ netstat -ano | findstr /r /c:":8123 .*LISTENING" >nul 2>nul
 if %errorlevel%==0 goto OPEN
 if %tries% lss 10 goto WAIT
 
-echo   Server qalxmadi. Fayl birbasa acilir...
+echo.
+echo   XEBERDARLIQ: server qalxmadi, fayl birbasa acilir.
+echo   Bu rejimde brauzer teksturalari ve HDRI isiqlandirmani YUKLEMIR
+echo   (file:// + CORS) - sehne boz ve isiqsiz gorunecek.
+echo   Duzgun acmaq ucun: cd 3d ^&^& python -m http.server 8123
+echo.
 start "" "%~dp0index.html"
 goto DONE
 
@@ -43,7 +48,12 @@ echo   Isi bitirdikde "lab3d-server" penceresini baglayin.
 goto DONE
 
 :NOPYTHON
-echo   Python tapilmadi - fayl birbasa acilir.
+echo.
+echo   XEBERDARLIQ: Python tapilmadi, fayl birbasa acilir.
+echo   Bu rejimde brauzer teksturalari ve HDRI isiqlandirmani YUKLEMIR
+echo   (file:// + CORS) - sehne boz ve isiqsiz gorunecek.
+echo   Python qurasdirin ve bu fayli yeniden isledin.
+echo.
 start "" "%~dp0index.html"
 
 :DONE

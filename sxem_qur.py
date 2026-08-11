@@ -21,6 +21,7 @@ from matplotlib.patches import FancyBboxPatch, Rectangle, Circle, Ellipse, Fancy
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 except (AttributeError, OSError):
     pass
 

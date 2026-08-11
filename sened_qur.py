@@ -27,8 +27,10 @@ import re
 import sys
 
 # Windows konsolu standart olaraq cp1252-dir və ş/ə hərflərində çökür.
+# stderr də lazımdır — xəta mesajları oradan çıxır.
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 except (AttributeError, OSError):
     pass
 

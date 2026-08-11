@@ -4,10 +4,12 @@ __pycache__/
 venv/
 .env
 
-# 3D dizaynerin brauzerdən yüklədiyi müvəqqəti fayllar
-laboratoriya-duzulus.json
-laboratoriya-3d.png
-laboratoriya-*x*.png
+# 3D dizaynerin brauzerdən yüklədiyi müvəqqəti fayllar.
+# Yalnız layihə kökündə — renderler/ qovluğunda gizlədilməməlidir, əks halda
+# kadr əvəz edəndə git status heç nə göstərmir.
+/laboratoriya-duzulus.json
+/laboratoriya-3d.png
+/laboratoriya-*x*.png
 
 # teqdimat.html ilə eyni məzmunu daşıyan törəmə fayl (yalnız nəşr üçün lazımdır)
 teqdimat.body.html
