@@ -270,7 +270,9 @@ def build():
         raise SystemExit("Doldurulmamış yer tutucu qaldı: " + ", ".join(sorted(set(left))))
 
     body_path = os.path.join(BASE, "teqdimat.body.html")
-    with open(body_path, "w", encoding="utf-8") as fh:
+    # LF məcburidir: Windows-da CRLF yazılsaydı, .gitattributes LF gözlədiyi üçün
+    # hər qurulma faylı "dəyişmiş" göstərərdi (məzmun eyni olsa da).
+    with open(body_path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(html)
 
     full = ('<!doctype html>\n<html lang="az">\n<head>\n<meta charset="utf-8">\n'
@@ -278,7 +280,7 @@ def build():
             + html.split("</style>")[0] + "</style>\n</head>\n<body>\n"
             + html.split("</style>", 1)[1] + "\n</body>\n</html>\n")
     full_path = os.path.join(BASE, "teqdimat.html")
-    with open(full_path, "w", encoding="utf-8") as fh:
+    with open(full_path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(full)
 
     for p in (full_path, body_path):
