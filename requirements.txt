@@ -1,0 +1,9 @@
+# İT Laboratoriyası — sənəd və sxem generatorlarının asılılıqları
+#   pip install -r requirements.txt
+#
+# 3D dizayner (3d/) heç bir asılılıq tələb etmir — bütün kitabxanalar
+# 3d/vendor/ içindədir və brauzerdə işləyir.
+
+reportlab>=4.0      # PDF qurulması
+pillow>=10.0        # şəkillərin ölçüsünün oxunması (sened_qur.py)
+matplotlib>=3.8     # sxemlərin çəkilməsi (sxem_qur.py) + ehtiyat DejaVu şrifti

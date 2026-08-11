@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İT Laboratoriyası — 3D Dizayner</title>
+<style>
+  :root{
+    --bg:#0f1620; --panel:#18222f; --panel2:#1e2a3a; --line:#2b3a4d;
+    --tx:#e7edf3; --tx2:#94a5b8; --acc:#3498db; --ok:#2ecc71;
+    --warn:#f39c12; --err:#e74c3c; --gold:#f1c40f;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%; overflow:hidden}
+  body{
+    font:13px/1.45 "Segoe UI",system-ui,sans-serif;
+    background:var(--bg); color:var(--tx); user-select:none;
+  }
+  #app{display:grid; grid-template-rows:auto 1fr; height:100%}
+
+  /* ---------- Üst panel ---------- */
+  header{
+    display:flex; align-items:center; gap:14px; padding:9px 14px;
+    background:var(--panel); border-bottom:1px solid var(--line); flex-wrap:wrap;
+  }
+  header h1{font-size:14.5px; font-weight:700; letter-spacing:.2px; white-space:nowrap}
+  header h1 span{color:var(--acc)}
+  .sep{width:1px; height:22px; background:var(--line)}
+  .grp{display:flex; gap:5px; align-items:center}
+  .grp label{font-size:11px; color:var(--tx2); margin-right:2px}
+  button{
+    font:inherit; font-size:12px; color:var(--tx); background:var(--panel2);
+    border:1px solid var(--line); border-radius:6px; padding:5px 10px; cursor:pointer;
+    transition:.13s; white-space:nowrap;
+  }
+  button:hover{background:#26364a; border-color:#3b5068}
+  button.on{background:var(--acc); border-color:var(--acc); color:#fff}
+  button.gold{border-color:#8a6d13; color:var(--gold)}
+  select{
+    font:inherit; font-size:12px; background:var(--panel2); color:var(--tx);
+    border:1px solid var(--line); border-radius:6px; padding:5px 7px;
+  }
+
+  /* ---------- Gövdə ---------- */
+  #body{display:grid; grid-template-columns:212px 1fr 268px; min-height:0}
+  aside{background:var(--panel); overflow-y:auto; padding:11px}
+  aside.left{border-right:1px solid var(--line)}
+  aside.right{border-left:1px solid var(--line)}
+  aside h2{
+    font-size:10.5px; text-transform:uppercase; letter-spacing:.9px;
+    color:var(--tx2); margin:0 0 8px; font-weight:700;
+  }
+  aside h2:not(:first-child){margin-top:16px}
+
+  .cat{
+    display:flex; align-items:center; gap:8px; width:100%; text-align:left;
+    padding:7px 8px; margin-bottom:4px; border-radius:6px;
+    background:var(--panel2); border:1px solid var(--line); cursor:pointer;
+  }
+  .cat:hover{background:#26364a; transform:translateX(2px)}
+  .sw{width:13px; height:13px; border-radius:3px; flex:none}
+  .cat .nm{font-size:11.5px; line-height:1.25; flex:1}
+  .cat .pr{font-size:9.5px; color:var(--tx2); white-space:nowrap}
+
+  #view{position:relative; min-width:0; background:#0b1118}
+  canvas{display:block; width:100%; height:100%}
+  #hint{
+    position:absolute; left:12px; bottom:12px; font-size:11px; color:var(--tx2);
+    background:rgba(15,22,32,.86); border:1px solid var(--line);
+    border-radius:7px; padding:7px 11px; line-height:1.7; pointer-events:none;
+  }
+  #hint b{color:var(--tx)}
+  kbd{
+    background:var(--panel2); border:1px solid var(--line); border-bottom-width:2px;
+    border-radius:4px; padding:0 4px; font:11px/1.5 ui-monospace,monospace; color:var(--tx);
+  }
+
+  /* ---------- Statistika ---------- */
+  .stat{display:flex; justify-content:space-between; align-items:baseline;
+        padding:5px 0; border-bottom:1px solid var(--line); font-size:12px}
+  .stat:last-child{border-bottom:0}
+  .stat .k{color:var(--tx2)}
+  .stat .v{font-weight:700; font-variant-numeric:tabular-nums}
+  .v.ok{color:var(--ok)} .v.warn{color:var(--warn)} .v.err{color:var(--err)}
+
+  #msgs{margin-top:6px; display:flex; flex-direction:column; gap:5px}
+  .msg{font-size:11px; line-height:1.4; padding:6px 8px; border-radius:6px; border-left:3px solid}
+  .msg.ok  {background:rgba(46,204,113,.09); border-color:var(--ok)}
+  .msg.warn{background:rgba(243,156,18,.10); border-color:var(--warn)}
+  .msg.err {background:rgba(231,76,60,.10);  border-color:var(--err)}
+
+  /* ---------- Seçim paneli ---------- */
+  #selBox{background:var(--panel2); border:1px solid var(--line);
+          border-radius:7px; padding:9px; margin-bottom:6px}
+  #selBox .t{font-size:12.5px; font-weight:700; margin-bottom:6px}
+  .row{display:flex; gap:5px; align-items:center; margin-bottom:5px}
+  .row span{font-size:11px; color:var(--tx2); width:20px}
+  .row input{
+    flex:1; width:100%; font:inherit; font-size:11.5px; background:var(--panel);
+    color:var(--tx); border:1px solid var(--line); border-radius:5px; padding:4px 6px;
+    font-variant-numeric:tabular-nums;
+  }
+  .empty{color:var(--tx2); font-size:11.5px; font-style:italic; padding:6px 0}
+  .btns{display:flex; gap:5px; margin-top:7px}
+  .btns button{flex:1; padding:5px 4px; font-size:11px}
+  .danger{border-color:#7c2d26; color:#ff8a7a}
+  .danger:hover{background:#3a1c18; border-color:#a13b31}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1>İT Laboratoriyası — <span>3D Dizayner</span></h1>
+    <div class="sep"></div>
+
+    <div class="grp">
+      <label>Görünüş</label>
+      <button id="v3d" class="on">3D</button>
+      <button id="vtop">Plan</button>
+      <button id="vwalk">Gəzinti</button>
+    </div>
+    <div class="sep"></div>
+
+    <div class="grp">
+      <label>Addım</label>
+      <select id="snap">
+        <option value="0">sərbəst</option>
+        <option value="0.1" selected>10 sm</option>
+        <option value="0.25">25 sm</option>
+        <option value="0.5">50 sm</option>
+      </select>
+    </div>
+    <div class="grp">
+      <button id="walls" class="on">Divarlar</button>
+      <button id="zones" class="on">Keçid zonası</button>
+      <button id="dims">Ölçülər</button>
+      <button id="lux">İşıqlanma</button>
+    </div>
+    <div class="sep"></div>
+
+    <div class="grp">
+      <label>Kamera</label>
+      <select id="preset">
+        <option value="">— baxış nöqtəsi —</option>
+        <option value="corner">Künc — ümumi</option>
+        <option value="teacher">Müəllim baxışı</option>
+        <option value="student">Tələbə baxışı</option>
+        <option value="door">Girişdən</option>
+        <option value="server">Server zonası</option>
+      </select>
+    </div>
+    <div class="sep"></div>
+
+    <div class="grp">
+      <button id="undo">↶ Geri</button>
+      <button id="reset">İlkin plan</button>
+      <button id="clear" class="danger">Boşalt</button>
+    </div>
+    <div class="sep"></div>
+
+    <div class="grp">
+      <button id="expJson" class="gold">JSON ixrac</button>
+      <button id="impJson">İdxal</button>
+      <button id="expParams" class="gold"
+              title="Bütün mühəndis göstəricilərini lab_parametrleri.json faylına yazır — PDF və sxem generatorları həmin faylı oxuyur">Parametrlər</button>
+      <button id="png">PNG</button>
+      <button id="png4k" class="gold">4K render</button>
+    </div>
+    <input type="file" id="file" accept=".json" hidden>
+  </header>
+
+  <div id="body">
+
+    <aside class="left">
+      <h2>Avadanlıq əlavə et</h2>
+      <div id="catalog"></div>
+      <h2>Otaq ölçüsü</h2>
+      <div class="row"><span>En</span><input id="roomW" type="number" step="0.5" min="4" max="30" value="10"></div>
+      <div class="row"><span>Uz</span><input id="roomD" type="number" step="0.5" min="4" max="30" value="7"></div>
+      <div class="row"><span>Hün</span><input id="roomH" type="number" step="0.1" min="2.4" max="5" value="2.8"></div>
+      <div id="sizehint" class="empty" style="font-style:normal"></div>
+    </aside>
+
+    <div id="view">
+      <div id="hint">
+        <b>Sol düymə</b> seç · <b>sürüklə</b> yerini dəyiş · <b>sağ düymə</b> fırlat · <b>çarx</b> yaxınlaşdır<br>
+        <kbd>Q</kbd><kbd>E</kbd> döndər · <kbd>Del</kbd> sil · <kbd>Ctrl</kbd>+<kbd>D</kbd> kopyala ·
+        <kbd>Ctrl</kbd>+<kbd>Z</kbd> geri · <kbd>Esc</kbd> seçimi ləğv et
+      </div>
+    </div>
+
+    <aside class="right">
+      <h2>Seçilmiş obyekt</h2>
+      <div id="selBox"><div class="empty">Obyekt seçilməyib</div></div>
+
+      <h2>Göstəricilər</h2>
+      <div id="stats"></div>
+      <div class="empty" style="font-style:normal; font-size:10.5px; line-height:1.5">
+        Büdcə yalnız otağa qoyulmuş avadanlığı əhatə edir. Kabel sistemi, elektrik montajı,
+        proqram təminatı və quraşdırma işləri layihə sənədində ayrıca hesablanıb.
+      </div>
+
+      <h2>İşıqlanma analizi</h2>
+      <div id="luxbox"></div>
+
+      <h2>Akustika</h2>
+      <div id="acou"></div>
+
+      <h2>Əlçatanlıq</h2>
+      <div id="a11y"></div>
+
+      <h2>Elektrik və iqlim</h2>
+      <div id="elec"></div>
+
+      <h2>Yoxlama</h2>
+      <div id="msgs"></div>
+    </aside>
+
+  </div>
+</div>
+
+<div id="loading" style="position:fixed;inset:0;background:var(--bg);display:flex;
+     align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:99">
+  <div style="font-size:15px;font-weight:700;color:var(--acc)">İT Laboratoriyası — 3D Dizayner</div>
+  <div id="loadtxt" style="font-size:12px;color:var(--tx2)">materiallar yüklənir…</div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="vendor/BufferGeometryUtils.js"></script>
+<script src="vendor/RGBELoader.js"></script>
+<script src="vendor/SimplexNoise.js"></script>
+<script src="vendor/CopyShader.js"></script>
+<script src="vendor/SSAOShader.js"></script>
+<script src="vendor/LuminosityHighPassShader.js"></script>
+<script src="vendor/SMAAShader.js"></script>
+<script src="vendor/GammaCorrectionShader.js"></script>
+<script src="vendor/EffectComposer.js"></script>
+<script src="vendor/RenderPass.js"></script>
+<script src="vendor/ShaderPass.js"></script>
+<script src="vendor/SSAOPass.js"></script>
+<script src="vendor/UnrealBloomPass.js"></script>
+<script src="vendor/SMAAPass.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

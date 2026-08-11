@@ -1,0 +1,17 @@
+# Mətn faylları repoda LF ilə saxlanılır, iş qovluğunda platformaya uyğun açılır
+* text=auto eol=lf
+
+# Windows-a xas skript CRLF olmalıdır — əks halda cmd.exe onu düzgün oxumur
+*.bat text eol=crlf
+
+# Binar fayllar — diff/merge cəhdi edilməsin
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.hdr  binary
+
+# GitHub dil statistikası: kənar kitabxana və qurulmuş fayllar sayılmasın
+3d/vendor/**      linguist-vendored
+teqdimat.html     linguist-generated
+lab_parametrleri.json linguist-generated

@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "lab3d",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "3d"],
+      "port": 8123
+    },
+    {
+      "name": "teqdimat",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8125", "--directory", "."],
+      "port": 8125,
+      "url": "http://localhost:8125"
+    }
+  ]
+}

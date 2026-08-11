@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# 3D dizaynerin brauzerdən yüklədiyi müvəqqəti fayllar
+laboratoriya-duzulus.json
+laboratoriya-3d.png
+laboratoriya-*x*.png
+
+# teqdimat.html ilə eyni məzmunu daşıyan törəmə fayl (yalnız nəşr üçün lazımdır)
+teqdimat.body.html
+
+.DS_Store
+Thumbs.db
+desktop.ini

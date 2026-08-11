@@ -1,0 +1,727 @@
+<title>İT Tədris Laboratoriyası — layihə təqdimatı</title>
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   İT Tədris Laboratoriyası — təqdimat vərəqi
+   Vizual dil: texniki rəsm vərəqi — incə xətlər, düz künclər,
+   monoşrift rəqəmlər, sol kənarda nömrə zolağı.
+   Rənglər otağın özündən götürülüb: soyuq boz divar, palıd masa,
+   antistatik skamyanın firuzəyisi.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --paper:#e9edf0;
+  --card:#f6f8f9;
+  --ink:#0f1922;
+  --ink-2:#2a3947;
+  --slate:#5d6d7c;
+  --slate-2:#8496a4;
+  --line:#c5ced6;
+  --line-2:#dde4e9;
+  --accent:#0d7a68;
+  --accent-soft:#d7ebe6;
+  --ok:#0f7150;
+  --warn:#9a6410;
+  --bad:#a3312a;
+  --oak:#b08a55;
+
+  --sans:"Segoe UI","Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono","Consolas","SF Mono","Roboto Mono",monospace;
+
+  --rail:96px;
+  --maxw:1180px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#0d151c;
+    --card:#141f29;
+    --ink:#e6edf2;
+    --ink-2:#c2ced8;
+    --slate:#8fa1af;
+    --slate-2:#6c7f8d;
+    --line:#27353f;
+    --line-2:#1d2831;
+    --accent:#37b8a0;
+    --accent-soft:#123029;
+    --ok:#3fb98c;
+    --warn:#d6a341;
+    --bad:#e0736a;
+    --oak:#c9a271;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0d151c; --card:#141f29; --ink:#e6edf2; --ink-2:#c2ced8;
+  --slate:#8fa1af; --slate-2:#6c7f8d; --line:#27353f; --line-2:#1d2831;
+  --accent:#37b8a0; --accent-soft:#123029;
+  --ok:#3fb98c; --warn:#d6a341; --bad:#e0736a; --oak:#c9a271;
+}
+:root[data-theme="light"]{
+  --paper:#e9edf0; --card:#f6f8f9; --ink:#0f1922; --ink-2:#2a3947;
+  --slate:#5d6d7c; --slate-2:#8496a4; --line:#c5ced6; --line-2:#dde4e9;
+  --accent:#0d7a68; --accent-soft:#d7ebe6;
+  --ok:#0f7150; --warn:#9a6410; --bad:#a3312a; --oak:#b08a55;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+/* width/height atributları yerləşdirmə sıçrayışını (CLS) aradan qaldırır,
+   height:auto isə şəklin nisbətini qoruyur — biri olmadan digəri şəkli dartır. */
+img{max-width:100%; height:auto; display:block;}
+
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+/* ── başlıq bloku (texniki rəsmin “title block”u) ── */
+.titleblock{
+  border-bottom:2px solid var(--ink);
+  padding:56px 0 22px;
+}
+.eyebrow{
+  font-size:11.5px; letter-spacing:.20em; text-transform:uppercase;
+  color:var(--accent); font-weight:700; margin:0 0 18px;
+}
+h1{
+  font-size:clamp(30px,5.4vw,54px); line-height:1.06; margin:0 0 18px;
+  letter-spacing:-.022em; font-weight:700; text-wrap:balance; max-width:17ch;
+}
+.lede{
+  font-size:clamp(16px,1.7vw,19px); color:var(--ink-2); max-width:62ch;
+  margin:0 0 30px; line-height:1.58;
+}
+.facts{
+  display:grid; grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:1px; background:var(--line); border:1px solid var(--line);
+}
+@media(max-width:900px){.facts{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:520px){.facts{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.fact{background:var(--card); padding:14px 16px;}
+.fact dt{
+  font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--slate-2); font-weight:600; margin:0 0 5px;
+}
+.fact dd{
+  margin:0; font-family:var(--mono); font-size:clamp(16px,1.65vw,21px);
+  font-weight:600; white-space:nowrap;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums; color:var(--ink);
+}
+.fact dd .u{font-size:12px; color:var(--slate); font-weight:400; margin-left:3px;}
+
+/* ── bölmə ── */
+section{padding:64px 0 8px; border-top:1px solid var(--line-2);}
+section:first-of-type{border-top:none;}
+.sec{display:grid; grid-template-columns:var(--rail) 1fr; gap:0;}
+.sec > .rail{
+  border-right:1px solid var(--line);
+  padding-right:18px; text-align:right;
+}
+.rail .no{
+  font-family:var(--mono); font-size:12px; font-weight:600;
+  color:var(--accent); letter-spacing:.04em; display:block;
+}
+.rail .tag{
+  font-size:10px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--slate-2); display:block; margin-top:6px; line-height:1.4;
+}
+.sec > .body{padding-left:28px; min-width:0;}
+h2{
+  font-size:clamp(21px,2.7vw,30px); line-height:1.18; margin:0 0 14px;
+  letter-spacing:-.018em; font-weight:700; text-wrap:balance;
+}
+h3{
+  font-size:16.5px; margin:0 0 8px; font-weight:700; letter-spacing:-.008em;
+}
+p{margin:0 0 15px; max-width:66ch;}
+.muted{color:var(--slate);}
+.small{font-size:14px; line-height:1.55;}
+
+/* ── render lövhələri ── */
+figure{margin:22px 0 26px;}
+figure img{border:1px solid var(--line); background:var(--card);}
+figcaption{
+  font-size:12.5px; color:var(--slate); margin-top:9px;
+  display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
+}
+figcaption b{
+  color:var(--ink-2); font-weight:600; font-size:12.5px;
+  letter-spacing:.02em;
+}
+.plates{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+@media(max-width:760px){.plates{grid-template-columns:1fr;}}
+
+/* ── zona kartları ── */
+.zones{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line);
+       border:1px solid var(--line); margin:24px 0 8px;}
+@media(max-width:860px){.zones{grid-template-columns:1fr;}}
+.zone{background:var(--card); padding:0 0 20px;}
+.zone img{border-bottom:1px solid var(--line);}
+.zone .zbody{padding:16px 18px 0;}
+.zhead{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:8px;}
+.zcap{
+  font-family:var(--mono); font-size:12.5px; color:var(--accent);
+  font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums;
+}
+.zone p{font-size:14.5px; line-height:1.56; margin:0 0 10px; max-width:none;}
+.kit{
+  font-size:12.5px; color:var(--slate); line-height:1.5;
+  border-top:1px dashed var(--line); padding-top:9px; margin-top:11px;
+}
+.kit b{color:var(--ink-2); font-weight:600;
+  font-size:10px; letter-spacing:.13em; text-transform:uppercase;
+  display:block; margin-bottom:4px;}
+
+/* ── dərs axını ── */
+.flow{border-left:2px solid var(--line); margin:22px 0 8px; padding-left:0;}
+.step{display:grid; grid-template-columns:96px 1fr; gap:18px; padding:0 0 22px 20px;
+      position:relative;}
+.step::before{
+  content:""; position:absolute; left:-6px; top:7px; width:10px; height:10px;
+  background:var(--accent); border:2px solid var(--paper);
+}
+.step .t{
+  font-family:var(--mono); font-size:12.5px; color:var(--accent); font-weight:600;
+  font-variant-numeric:tabular-nums; padding-top:1px; white-space:nowrap;
+}
+.step h4{margin:0 0 4px; font-size:15px; font-weight:700;}
+.step p{margin:0; font-size:14.5px; color:var(--ink-2); max-width:60ch;}
+@media(max-width:620px){
+  .step{grid-template-columns:1fr; gap:4px;}
+}
+
+/* ── cədvəllər ── */
+.tblwrap{overflow-x:auto; margin:20px 0 10px; border:1px solid var(--line);}
+table{border-collapse:collapse; width:100%; font-size:14px; background:var(--card);}
+th,td{padding:9px 13px; text-align:left; border-bottom:1px solid var(--line-2);
+      vertical-align:top;}
+thead th{
+  background:var(--ink); color:var(--paper); font-weight:600;
+  font-size:10.5px; letter-spacing:.11em; text-transform:uppercase;
+  white-space:nowrap; border-bottom:none;
+}
+tbody tr:last-child td{border-bottom:none;}
+td.n,th.n{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums;
+          white-space:nowrap;}
+tr.total td{background:var(--accent-soft); font-weight:700; border-top:1px solid var(--accent);}
+tr.sub td{font-weight:600;}
+caption{caption-side:bottom; text-align:left; font-size:12.5px; color:var(--slate);
+        padding:9px 2px 0;}
+
+/* ── yoxlama çipləri ── */
+.checks{display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr));
+        gap:1px; background:var(--line); border:1px solid var(--line); margin:22px 0 10px;}
+.check{background:var(--card); padding:15px 17px;}
+.check .lbl{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+            color:var(--slate-2); font-weight:600; margin-bottom:7px;}
+.check .val{font-family:var(--mono); font-size:22px; font-weight:600;
+            font-variant-numeric:tabular-nums; letter-spacing:-.02em; line-height:1.2;}
+.check .val .u{font-size:12px; color:var(--slate); font-weight:400; margin-left:3px;}
+.check .norm{font-size:12.5px; color:var(--slate); margin-top:5px;}
+.pill{
+  display:inline-block; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+  font-weight:700; padding:2px 7px; margin-top:9px; border:1px solid;
+}
+.pill.ok{color:var(--ok); border-color:var(--ok);}
+.pill.warn{color:var(--warn); border-color:var(--warn);}
+.pill.bad{color:var(--bad); border-color:var(--bad); background:var(--bad); color:#fff;}
+
+/* ── xəbərdarlıq bloku ── */
+.note{
+  border:1px solid var(--line); border-left:3px solid var(--accent);
+  background:var(--card); padding:16px 20px; margin:22px 0; font-size:14.5px;
+}
+.note.alert{border-left-color:var(--bad);}
+.note h4{margin:0 0 7px; font-size:14.5px; font-weight:700;}
+.note p{margin:0 0 8px; max-width:70ch;}
+.note p:last-child{margin-bottom:0;}
+
+/* ── siyahılar ── */
+ul.tick{list-style:none; padding:0; margin:14px 0;}
+ul.tick li{
+  padding-left:24px; position:relative; margin-bottom:9px; max-width:66ch;
+  font-size:15px; line-height:1.55;
+}
+ul.tick li::before{
+  content:""; position:absolute; left:2px; top:11px; width:11px; height:2px;
+  background:var(--accent);
+}
+ol.steps{counter-reset:s; list-style:none; padding:0; margin:16px 0;}
+ol.steps li{
+  counter-increment:s; padding-left:38px; position:relative; margin-bottom:12px;
+  max-width:66ch; font-size:15px; line-height:1.55;
+}
+ol.steps li::before{
+  content:counter(s,decimal-leading-zero);
+  position:absolute; left:0; top:1px; font-family:var(--mono); font-size:12.5px;
+  font-weight:700; color:var(--accent);
+}
+
+/* ── alt qeyd ── */
+footer{
+  border-top:2px solid var(--ink); margin-top:58px; padding:22px 0 56px;
+  font-size:12.5px; color:var(--slate); display:flex; gap:20px;
+  justify-content:space-between; flex-wrap:wrap;
+}
+footer .mono{font-family:var(--mono);}
+
+@media(max-width:720px){
+  .sec{grid-template-columns:1fr;}
+  .sec > .rail{
+    border-right:none; border-bottom:1px solid var(--line);
+    text-align:left; padding:0 0 10px; margin-bottom:18px;
+    display:flex; gap:12px; align-items:baseline;
+  }
+  .rail .tag{margin-top:0;}
+  .sec > .body{padding-left:0;}
+  section{padding-top:46px;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<div class="wrap">
+
+  <!-- ══════════ BAŞLIQ ══════════ -->
+  <header class="titleblock">
+    <p class="eyebrow">Universitet · İnformasiya texnologiyaları · Layihə təqdimatı</p>
+    <h1>Tələbənin əli ilə öyrəndiyi İT laboratoriyası</h1>
+    <p class="lede">
+      Bir otaq — 38 iş yeri. 1-ci kursun ilk “Hello, world”-ündən 4-cü kursun
+      diplom işinə qədər bütün praktiki fənlər burada keçirilir: proqramlaşdırma,
+      verilənlər bazası, şəbəkə, server, kibertəhlükəsizlik, süni intellekt, IoT.
+      Bu vərəq otağın necə görünəcəyini, nəyin lazım olduğunu və nəyə başa gəldiyini
+      göstərir.
+    </p>
+    <dl class="facts">
+      <div class="fact"><dt>Otaq</dt><dd>12,5 × 7,5<span class="u">m</span></dd></div>
+      <div class="fact"><dt>Sahə</dt><dd>93,8<span class="u">m²</span></dd></div>
+      <div class="fact"><dt>İş yeri</dt><dd>38</dd></div>
+      <div class="fact"><dt>Eyni anda</dt><dd>33<span class="u">nəfər</span></dd></div>
+      <div class="fact"><dt>İşə düşən paket</dt><dd>199 040<span class="u">AZN</span></dd></div>
+      <div class="fact"><dt>İcra müddəti</dt><dd>11–16<span class="u">həftə</span></dd></div>
+    </dl>
+  </header>
+
+  <!-- ══════════ 1 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">01</span><span class="tag">Əsas qərar</span></div>
+    <div class="body">
+      <h2>Nə üçün adi kompüter sinfi deyil</h2>
+      <p>
+        Ənənəvi kompüter sinfi bir sıra eyni maşından ibarətdir: tələbə ekrana baxır,
+        müəllim arxada gəzir, komanda işi mümkün olmur. Belə otaqlar dünyada eyni dörd
+        problemdən əziyyət çəkir — tələbə öz noutbukunu gətirir və otaq boş qalır,
+        avadanlıq köhnəlir, praktika sənayenin gözləntisindən geri qalır, sərt sıra
+        düzülüşü yalnız fərdi işə imkan verir.
+      </p>
+      <p>
+        Bu layihə <b>hibrid model</b> üzərində qurulub: fiziki iş yeri + virtual maşın +
+        bulud + öz cihazın. Tələbə hansı yolla girirsə-girsin, mühiti eynidir; laboratoriya
+        isə bir tip avadanlığa bağlı qalmır.
+      </p>
+      <ul class="tick">
+        <li><b>Pod düzülüşü</b> — 4 nəfər üzbəüz. Kod baxışı, cüt proqramlaşdırma və komanda
+            layihəsi masanın öz formasından çıxır; müəllim hər ekranı fiziki görür.</li>
+        <li><b>Praktika real avadanlıqda</b> — server, switch, router, ossiloskop, lehimləmə.
+            Tələbə simulyatorla deyil, cihazın özü ilə işləyir.</li>
+        <li><b>İş yeri tək istifadəlikdir</b> — hər yenidən başlatmada təmizlənir, tələbənin
+            işi isə serverdə yaşayır. Hansı stula oturmasının fərqi yoxdur.</li>
+        <li><b>Əlçatanlıq layihənin bir hissəsidir</b> — sonradan əlavə deyil, ilk gündən.</li>
+      </ul>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 2 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">02</span><span class="tag">Otaq</span></div>
+    <div class="body">
+      <h2>Otaq necə görünür</h2>
+      <p>
+        Aşağıdakı görüntülər layihənin 3D modelindən birbaşa götürülüb — mebelin ölçüsü,
+        keçid yollarının eni və avadanlığın yeri sənəddəki rəqəmlərlə eynidir.
+      </p>
+      <figure>
+        {{IMG:01_umumi:1240}}
+        <figcaption><b>Ümumi görünüş</b> <span>Sağ ön küncdən: mərkəzdə tələbə podları, arxa divarda 86" interaktiv panel, sol küncdə server zonası, sağda BYOD masası və IoT skamyası.</span></figcaption>
+      </figure>
+      <div class="plates">
+        <figure>
+          {{IMG:09_plan_gorunus:620}}
+          <figcaption><b>Plan</b> <span>Yuxarıdan baxış — zonaların bölgüsü.</span></figcaption>
+        </figure>
+        <figure>
+          {{IMG:02_umumi_arxa:620}}
+          <figcaption><b>Əks küncdən</b> <span>Pəncərələr sol divarda: işıq monitorlara perpendikulyar düşür, ekranda parıltı yaratmır.</span></figcaption>
+        </figure>
+      </div>
+      <div class="note">
+        <h4>Otağın ölçüsü sabit deyil</h4>
+        <p>
+          38 iş yeri üçün tələb olunan minimum sahə <b>81,4 m²</b>-dir (sabit yerə 2,30 m²,
+          növbə ilə istifadə olunan çevik yerə 1,60 m², hər əlçatan yerə əlavə 1,20 m²).
+          Layihədə 93,8 m² götürülüb — qalan 12,4 m² sıralar arasında 1,40 m keçid yolunu
+          və əlil arabası üçün Ø1,5 m manevr dairələrini təmin edir.
+          Universitet başqa ölçülü otaq ayırarsa, 3D dizayner bütün göstəriciləri
+          yenidən hesablayır.
+        </p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 3 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">03</span><span class="tag">Zonalar</span></div>
+    <div class="body">
+      <h2>Yeddi zona — tələbənin əli ilə nə etdiyi</h2>
+      <p>
+        Otaq yeddi funksional zonaya bölünüb. Hər zona konkret fənlərə və konkret
+        praktiki bacarığa bağlıdır — “burada nə öyrənilir” sualının cavabı avadanlıq
+        siyahısından yox, tələbənin gördüyü işdən çıxır.
+      </p>
+
+      <div class="zones">
+
+        <article class="zone">
+          {{IMG:03_pod_zonasi:600}}
+          <div class="zbody">
+            <div class="zhead"><h3>Tədris zonası</h3><span class="zcap">24 yer</span></div>
+            <p>
+              6 pod × 4 iş yeri. Proqramlaşdırma (Python, C++, Java, C#), alqoritmlər,
+              verilənlər bazası sorğuları, veb tətbiqin qurulması, versiya nəzarəti,
+              əməliyyat sistemi ilə iş. Podda 4 nəfər üzbəüz oturur — cüt proqramlaşdırma
+              və kod baxışı təbii şəkildə alınır.
+            </p>
+            <div class="kit"><b>Avadanlıq</b>
+              24× PC (i5-14400 / Ryzen 5, 16 GB DDR5, 512 GB NVMe) · 24× 24" IPS monitor ·
+              hər iş yerində 4 rozetka, 2× RJ-45, USB-C · kabel kanallı hərəkət edən pod masası
+            </div>
+          </div>
+        </article>
+
+        <article class="zone">
+          {{IMG:06_byod_elcatan:600}}
+          <div class="zbody">
+            <div class="zhead"><h3>Əlçatan iş yerləri və BYOD</h3><span class="zcap">2 + 6 yer</span></div>
+            <p>
+              Əlçatan yerlərdə proqram mühiti və tapşırıqlar tədris zonası ilə eynidir —
+              fərq yalnız masadadır: hündürlüyü 70–120 sm elektrik mühərriki ilə tənzimlənir,
+              qarşısında Ø1,5 m manevr dairəsi boş saxlanılır. BYOD masası isə komanda işi
+              üçündür: tələbə öz noutbuku ilə gəlir, 55" ekrana qoşulur.
+            </p>
+            <div class="kit"><b>Avadanlıq</b>
+              2× tənzimlənən masa + PC + monitor · NVDA ekran oxuyucusu ·
+              oval BYOD masası (elektrik + USB-C) · 55" 4K komanda ekranı · Wi-Fi 6
+            </div>
+          </div>
+        </article>
+
+        <article class="zone">
+          {{IMG:08_server:600}}
+          <div class="zbody">
+            <div class="zhead"><h3>Server və şəbəkə</h3><span class="zcap">real avadanlıq</span></div>
+            <p>
+              Tələbə serverin qarşısında dayanır, kabeli özü taxır: Proxmox-da virtual maşın
+              yaratmaq, snapshot ilə geri qaytarmaq, Linux server qaldırmaq, Docker konteyner,
+              Active Directory, VPN, RAID və yedəkləmədən bərpa. Cisco dəsti ilə VLAN,
+              marşrutlaşdırma və switch konfiqurasiyası — CCNA hazırlığı.
+            </p>
+            <div class="kit"><b>Avadanlıq</b>
+              19" rack 18U · virtuallaşdırma serveri (2× 16 nüvə, 256 GB ECC, 4 TB NVMe RAID) ·
+              NAS 24 TB (4× 8 TB RAID5) · 6 kVA online UPS · 48-port L2+/L3 switch · NGFW ·
+              2× ISR router + 2× Catalyst switch
+            </div>
+          </div>
+        </article>
+
+        <article class="zone">
+          {{IMG:07_iot:600}}
+          <div class="zbody">
+            <div class="zhead"><h3>IoT və prototipləmə</h3><span class="zcap">6 yer</span></div>
+            <p>
+              Antistatik skamyada sensor qoşulur, lehim edilir, ossiloskopla siqnal ölçülür,
+              MQTT ilə data buluda göndərilir. Yanında 3D printer: tələbə öz layihəsinin
+              korpusunu modelləşdirir və çap edir. Robototexnika və diplom layihələrinin
+              fiziki hissəsi burada qurulur.
+            </p>
+            <div class="kit"><b>Avadanlıq</b>
+              3,15 m antistatik skamya + 6 taburet · 10× Arduino dəsti · 6× Raspberry Pi 5 ·
+              lehimləmə stansiyası, multimetr, ossiloskop · FDM 3D printer (qapalı korpus)
+            </div>
+          </div>
+        </article>
+
+        <article class="zone">
+          {{IMG:04_muellim:600}}
+          <div class="zbody">
+            <div class="zhead"><h3>Təqdimat və müəllim stansiyası</h3><span class="zcap">86"</span></div>
+            <p>
+              Müəllim stansiyası otağın hər nöqtəsini görür. Tapşırıq 86" interaktiv paneldə
+              göstərilir və Veyon ilə hər tələbənin ekranına ötürülür; əks istiqamətdə
+              istənilən tələbənin ekranı sinfə çıxarıla bilir. Videokonfrans dəsti uzaqdan
+              qonaq mühazirəsinə imkan verir.
+            </p>
+            <div class="kit"><b>Avadanlıq</b>
+              86" 4K sensor panel (Android + OPS) · müəllim stansiyası (i7 / Ryzen 7,
+              32 GB, 1 TB SSD, 2× monitor) · Veyon sinif idarəetməsi · 4K kamera + mikrofon massivi
+            </div>
+          </div>
+        </article>
+
+        <article class="zone">
+          {{IMG:05_telebe:600}}
+          <div class="zbody">
+            <div class="zhead"><h3>AI / GPU stansiyası</h3><span class="zcap">1 stansiya</span></div>
+            <p>
+              Ağır hesablama işləri üçün ayrıca stansiya: model öyrətmək, CUDA, PyTorch və
+              TensorFlow, kompüter görməsi, diplom işinin hesablamaları. Növbə ilə istifadə
+              olunur və uzaqdan da qoşulmaq mümkündür — bir stansiya bütün kursa xidmət edir.
+            </p>
+            <div class="kit"><b>Avadanlıq</b>
+              RTX 5070 Ti 16 GB · 64 GB RAM · Ubuntu LTS · JupyterHub ilə uzaqdan çıxış
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="small muted" style="margin-top:16px">
+        Yeddinci zona — prototipləmə və çap (3D printer + MFP) — IoT skamyasının yanında,
+        girişə yaxın yerləşdirilib ki, tüstü və səs-küy tədris zonasından uzaq qalsın.
+      </p>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 4 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">04</span><span class="tag">Bir dərs</span></div>
+    <div class="body">
+      <h2>90 dəqiqəlik laboratoriya dərsi necə keçir</h2>
+      <p>
+        Otağın düzülüşü bir dərsin gedişindən çıxarılıb. Aşağıdakı ssenari 3-cü kursun
+        “Kompüter şəbəkələri” fənninin tipik laboratoriya məşğələsidir.
+      </p>
+      <div class="flow">
+        <div class="step">
+          <div class="t">00–10 dəq</div>
+          <div>
+            <h4>Giriş</h4>
+            <p>Müəllim tapşırığı 86" paneldə göstərir və Veyon ilə hər ekrana ötürür.
+               Tələbələr öz hesablarına girir — şəbəkə diski, sənədlər və proqram mühiti
+               olduğu yerdə açılır.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="t">10–25 dəq</div>
+          <div>
+            <h4>Fərdi hazırlıq</h4>
+            <p>Podda hər tələbə öz iş yerində konfiqurasiyanı Packet Tracer-də qurur,
+               nəzəri hissəni yoxlayır. Müəllim pod aralarından keçərək ekranları görür.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="t">25–55 dəq</div>
+          <div>
+            <h4>Real avadanlıqda praktika</h4>
+            <p>Qrup üç yerə bölünür: bir hissə Cisco dəstində konsol kabeli ilə switch
+               konfiqurasiya edir, ikinci hissə server rack-da VLAN-ı virtual maşınlarda
+               yoxlayır, üçüncü hissə IoT skamyasında kabel krimpləyir və test edir.
+               Podlar arasında 1,40 m keçid yolu üç qrupun eyni anda hərəkətinə imkan verir.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="t">55–75 dəq</div>
+          <div>
+            <h4>Komanda işi</h4>
+            <p>Nəticələr BYOD masasında birləşdirilir. Komanda 55" ekranda topologiyanı
+               müzakirə edir, hesabatı hazırlayır. Əlçatan iş yerindən gələn tələbə
+               masaya sərbəst yanaşır — arada astana və pilləkən yoxdur.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="t">75–90 dəq</div>
+          <div>
+            <h4>Təqdimat və qiymətləndirmə</h4>
+            <p>Hər komanda 86" paneldə nəticəni göstərir. Kod və konfiqurasiya faylları
+               GitHub repozitoriyasına göndərilir — iş tələbənin portfelində qalır.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="t">dərsdən sonra</div>
+          <div>
+            <h4>Sıfırlama</h4>
+            <p>İş yerləri yenidən başladılır və ilkin vəziyyətə qayıdır. Növbəti qrup
+               təmiz sistemlə oturur; əvvəlki qrupun işi isə serverdə toxunulmadan qalır.
+               Axşam 18:00–22:00 arası otaq kartla girişlə sərbəst praktikaya açıqdır.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 5 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">05</span><span class="tag">Nə lazımdır</span></div>
+    <div class="body">
+      <h2>Avadanlıq siyahısı</h2>
+      <p>
+        Doqquz kateqoriya, tövsiyə olunan ssenari (B) üzrə. Qiymətlər indikativdir —
+        rəsmi satınalmada ən azı üç kommersiya təklifi alınmalıdır.
+      </p>
+      {{TABLE:EQUIP}}
+      <div class="note">
+        <h4>Nə üçün 256 GB server yaddaşı</h4>
+        <p>
+          30 konteyner × 2 GB + 15 virtual maşın × 4 GB + hipervizor 12 GB ≈ 132 GB.
+          128 GB bu yükü daşımır, sonradan artırmaq isə serveri açmaq və modul dəyişmək
+          deməkdir — ilk alışda düzgün seçmək ucuz başa gəlir.
+        </p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 6 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">06</span><span class="tag">Mühəndis yoxlaması</span></div>
+    <div class="body">
+      <h2>Otağın normalara uyğunluğu</h2>
+      <p>
+        Hər göstərici otağın cari ölçüsündən hesablanır. Ölçü və ya düzülüş dəyişəndə
+        nəticələr avtomatik yenilənir — aşağıdakı rəqəmlər 12,5 × 7,5 × 2,8 m otaq üçündür.
+      </p>
+      {{CHECKS}}
+      <div class="plates" style="margin-top:26px">
+        <figure>
+          {{IMG:10_zonalar_olculer:620}}
+          <figcaption><b>Keçid yolları və ölçülər</b> <span>Yaşıl sahələr stul çəkmək üçün tələb olunan boş məsafədir; ölçülər real vaxtda hesablanır.</span></figcaption>
+        </figure>
+        <figure>
+          {{IMG:11_isiqlanma_xeritesi:620}}
+          <figcaption><b>İşıqlanma xəritəsi</b> <span>0,75 m iş səthində lüks paylanması — 15 tavan paneli, orta 484 lx.</span></figcaption>
+        </figure>
+      </div>
+      <div class="note alert">
+        <h4>Bir göstərici normanı ödəmir — akustika</h4>
+        <p>
+          İşlənməmiş otaqda əks-səda müddəti <b>RT60 = 1,57 s</b>-dir; tədris otağı norması
+          ≤0,60 s. Bu o deməkdir ki, müəllimin nitqi arxa sıralarda anlaşılmır və tələbələr
+          tez yorulur. Akustik asma tavan (≈66 m²) göstəricini 0,53 s-ə endirir və problemi
+          tək başına həll edir.
+        </p>
+        <p>
+          Xərc <b>3 300 AZN</b> — kapital büdcəsinin 2 %-i. Rack serverinin səs-küyü üçün
+          səssiz şkaf isə əlavə <b>1 600 AZN</b>. Hər ikisi cari büdcəyə <b>daxil edilməyib</b>
+          və ayrıca qərar tələb edir. Qərar təxirə salınarsa, sonradan tavan quraşdırmaq
+          kabel və işıqlandırma sisteminin sökülməsini tələb edəcək.
+        </p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 6.5 — AUDİT ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">07</span><span class="tag">Audit</span></div>
+    <div class="body">
+      <h2>Nə çatışmır — müstəqil audit</h2>
+      <p>
+        Paket altı müstəqil istiqamət üzrə yenidən yoxlanılıb: pedaqogika və praktiki
+        təcrübə, avadanlığın tamlığı, təhlükəsizlik və normalar, əlçatanlıq, gündəlik
+        istismar, qərarvericiyə təqdimat. Hər tapıntı ayrıca yoxlamadan keçirilib —
+        aşağıdakılar sənədin heç bir yerində olmayan boşluqlardır.
+      </p>
+      <p>
+        Səbəb aydındır: ilkin spesifikasiya <b>iş yerlərini və şəbəkəni</b> əhatə edirdi,
+        tələbənin <b>əli ilə</b> işlədiyi mühiti isə tam əhatə etmirdi — sökülə bilən
+        avadanlıq, alət, təzə hava, tüstü sorucu, differensial müdafiə.
+      </p>
+      {{TABLE:AUDIT}}
+      <div class="note alert">
+        <h4>Üç tapıntı ayrıca diqqət tələb edir</h4>
+        <p>
+          <b>Havalandırma kondisioner sayını dəyişir.</b> Split kondisioner havanı soyudur,
+          təzələmir. 262,5 m³ otaqda 33 nəfərlə CO₂ ikinci dərs saatında 3000 ppm-i keçir.
+          Rekuperatorsuz havalandırma soyutma yükünə ≈8–10 kVt əlavə edir və iki kondisioner
+          yetmir — ona görə bu qərar iqlim avadanlığından <b>əvvəl</b> verilməlidir.
+        </p>
+        <p>
+          <b>Sökülə bilən avadanlıq yoxdur.</b> Sənəd 2-ci kursa CompTIA A+, 3-cü kursa CCNA
+          hədəfləyir, amma tələbə kompüterləri 3 il zəmanətlidir — açmaq zəmanəti pozur.
+          Praktika üçün ayrıca stend lazımdır; universitetin silinmiş kompüterlərindən
+          qurularsa, xərci sıfırdır.
+        </p>
+        <p>
+          <b>Keçid yolunun həqiqi eni.</b> “Sıralar arasında 1,40 m” — masa kənarından masa
+          kənarınadır. Hər sıranın stulları 0,61 m tutur, ona görə hər iki sıra dolu olanda
+          aradan <b>≈0,18 m</b> qalır: bu zolaq iş sahəsidir, gediş-gəliş yolu deyil.
+          Əlil arabası marşrutu bu zolaqdan keçmir — əlçatan iş yerləri sağ zolaqda,
+          qapıya birbaşa çıxışı olan mövqedədir və bu yol 3D modeldə yoxlanılıb.
+          Universitet oturmuş sıralar arasında da sərbəst keçid istəyirsə: pod sıralarını
+          3+3 → 3+2 etmək (tutum 38 → 34) və ya otağın dərinliyini 7,5 → 8,3 m artırmaq.
+        </p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 8 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">08</span><span class="tag">Büdcə</span></div>
+    <div class="body">
+      <h2>Üç ssenari və 5 illik sahiblik dəyəri</h2>
+      {{TABLE:SCEN}}
+      {{TABLE:READY}}
+      {{TABLE:TCO}}
+      <p class="small muted">
+        Hər ssenaridə 8 %-lik gözlənilməz xərc ehtiyatı həmin ssenarinin öz ara cəmindən
+        hesablanır. Qiymətlər indikativdir — rəsmi satınalmada ən azı üç kommersiya
+        təklifi alınmalıdır.
+      </p>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 9 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">09</span><span class="tag">İcra</span></div>
+    <div class="body">
+      <h2>11–16 həftədə işə düşür</h2>
+      {{TABLE:PLAN}}
+      <p>
+        Mərhələ 1 (otağın hazırlanması) və mərhələ 2 (satınalma) paralel aparılarsa,
+        layihə bir semestr ərzində tamamlanır. Ən uzun və ən riskli hissə otağın
+        elektrik və kabel işidir — ona görə qərar verildiyi gün başlamalıdır.
+      </p>
+    </div>
+  </div></section>
+
+  <!-- ══════════ 10 ══════════ -->
+  <section><div class="sec">
+    <div class="rail"><span class="no">10</span><span class="tag">Qərar</span></div>
+    <div class="body">
+      <h2>Növbəti addımlar</h2>
+      <ol class="steps">
+        <li><b>Səviyyənin seçilməsi</b> — “işə düşən laboratoriya” (199 040 AZN) tövsiyə
+            olunur: bu, Ssenari B + akustika + auditin kritik əlavələridir. Büdcə
+            məhduddursa, E qrupu (29 460 AZN) ikinci mərhələyə salına bilər;
+            A–D qrupları isə açılış üçün mütləqdir.</li>
+        <li><b>Havalandırma qərarı</b> — iqlim avadanlığından əvvəl verilməlidir, çünki
+            rekuperatorsuz variant kondisioner sayını dəyişir.</li>
+        <li><b>Akustika barədə qərar</b> — +4 900 AZN. Layihə mərhələsində verilməlidir,
+            sonra kabel və işıq sisteminin sökülməsini tələb edir.</li>
+        <li><b>Keçid yolu qərarı</b> — 38 yer (sıra düzülüşü) yoxsa 34 yer (sıralar
+            arasında sərbəst keçid). Otağın dərinliyi 8,3 m-ə çatırsa, hər ikisi mümkündür.</li>
+        <li><b>Otağın təsdiqlənməsi</b> — ən azı 81,4 m², tövsiyə olunan 93,8 m².
+            Elektrik xətti üçün 16 kVt ayrılma imkanı yoxlanılmalıdır.</li>
+        <li><b>Akademik proqramlara qeydiyyat</b> — GitHub Education, AWS Academy,
+            Azure for Students, Cisco NetAcad. Pulsuzdur, lakin 4–8 həftə çəkir,
+            ona görə ilk gündən başlamalıdır.</li>
+        <li><b>Kommersiya təklifləri</b> — ən azı üç təchizatçıdan.</li>
+        <li><b>Laboratoriya rəhbərinin təyini</b> — texniki tapşırığı və qəbul testini
+            hazırlayacaq məsul şəxs. Bu addım atılmasa, avadanlıq gəlir və qutuda qalır.</li>
+      </ol>
+    </div>
+  </div></section>
+
+  <footer>
+    <span>İT Tədris Laboratoriyası — mühəndis analizi, texniki layihə və satınalma sənədi</span>
+    <span class="mono">{{DATE}} · 38 iş yeri · 93,8 m² · 199 040 AZN</span>
+  </footer>
+
+</div>

@@ -1,0 +1,71 @@
+{
+  "versiya": 1,
+  "menbe": "3D Dizayner (3d/app.js) — avtomatik ixrac",
+  "otaq": { "en": 12.5, "uzunluq": 7.5, "hundurluk": 2.8, "sahe": 93.75 },
+  "tutum": {
+    "is_yeri": 38,
+    "sabit": 26,
+    "cevik": 12,
+    "elcatan": 2,
+    "eyni_anda": 33,
+    "min_sahe": 81.4,
+    "sixliq": 2.47
+  },
+  "say": {
+    "pod": 6, "a11y": 2, "teacher": 1, "gpu": 1, "byod": 1, "iot": 1,
+    "rack": 1, "ups": 1, "nas": 1, "printer": 1, "cabinet": 1,
+    "panel": 1, "screen55": 1, "ac": 2, "desk1": 0,
+    "stul": 32, "taburet": 6, "monitor_telebe": 24
+  },
+  "isiqlanma": {
+    "orta": 484, "min": 276, "maks": 605, "u0": 0.57,
+    "panel_sayi": 15, "panel_lm": 4000,
+    "istismar_emsali": 0.8, "is_sethi_h": 0.75,
+    "eks_komponent": 128, "norma": 400, "u0_norma": 0.6
+  },
+  "akustika": {
+    "hecm": 262.5, "rt_bare": 1.57, "rt_ceiling": 0.53, "rt_full": 0.48,
+    "limit": 0.6, "tavan_sahesi": 65.63, "divar_paneli": 12, "ortuk_payi": 0.7
+  },
+  "soyutma": {
+    "avadanliq_vt": 5848, "isiq_vt": 600, "insan_vt": 2475, "xarici_vt": 1219,
+    "cem_vt": 10142, "btu": 34605, "kondisioner": 2, "kondisioner_btu": 24000
+  },
+  "elektrik": {
+    "kw_it": 6.45, "kw_kondisioner": 4.4, "kw_hesabi": 13.56, "kw_xett": 16,
+    "emsal": 1.25, "ehtiyat": 1.15, "rozetka": 108, "rj45": 44
+  },
+  "tahliye": {
+    "nefer": 33, "cixis": 1, "qapi_eni": 1.1, "qapi_tutumu": 200,
+    "en_uzaq_m": 13.21, "limit_m": 25
+  },
+  "elcatanliq": { "say": 2, "teleb": 2, "pozuntu": 0 },
+  "duzulus": {
+    "otaq": { "en": 12.5, "uzunluq": 7.5, "hundurluk": 2.8, "sahe": 93.75 },
+    "is_yeri": 38,
+    "budce_azn": 96990,
+    "obyektler": [
+      { "tip": "pod", "ad": "Pod — 4 iş yeri", "x": 1.53, "z": 5.3, "bucaq": 0, "en": 1.85, "uzunluq": 1.1, "reng": "#3498db", "is_yeri": 4, "divar": false, "avadanliq": false, "qiymet": 7710 },
+      { "tip": "pod", "ad": "Pod — 4 iş yeri", "x": 3.93, "z": 5.3, "bucaq": 0, "en": 1.85, "uzunluq": 1.1, "reng": "#3498db", "is_yeri": 4, "divar": false, "avadanliq": false, "qiymet": 7710 },
+      { "tip": "pod", "ad": "Pod — 4 iş yeri", "x": 6.33, "z": 5.3, "bucaq": 0, "en": 1.85, "uzunluq": 1.1, "reng": "#3498db", "is_yeri": 4, "divar": false, "avadanliq": false, "qiymet": 7710 },
+      { "tip": "pod", "ad": "Pod — 4 iş yeri", "x": 1.53, "z": 2.8, "bucaq": 0, "en": 1.85, "uzunluq": 1.1, "reng": "#3498db", "is_yeri": 4, "divar": false, "avadanliq": false, "qiymet": 7710 },
+      { "tip": "pod", "ad": "Pod — 4 iş yeri", "x": 3.93, "z": 2.8, "bucaq": 0, "en": 1.85, "uzunluq": 1.1, "reng": "#3498db", "is_yeri": 4, "divar": false, "avadanliq": false, "qiymet": 7710 },
+      { "tip": "pod", "ad": "Pod — 4 iş yeri", "x": 6.33, "z": 2.8, "bucaq": 0, "en": 1.85, "uzunluq": 1.1, "reng": "#3498db", "is_yeri": 4, "divar": false, "avadanliq": false, "qiymet": 7710 },
+      { "tip": "a11y", "ad": "Əlçatan iş yeri ♿", "x": 8.4, "z": 5.2, "bucaq": 0, "en": 1.4, "uzunluq": 0.75, "reng": "#2980b9", "is_yeri": 1, "divar": false, "avadanliq": false, "qiymet": 2640 },
+      { "tip": "a11y", "ad": "Əlçatan iş yeri ♿", "x": 8.4, "z": 2.8, "bucaq": 0, "en": 1.4, "uzunluq": 0.75, "reng": "#2980b9", "is_yeri": 1, "divar": false, "avadanliq": false, "qiymet": 2640 },
+      { "tip": "teacher", "ad": "Müəllim stansiyası", "x": 9.9, "z": 7.05, "bucaq": 0, "en": 1.85, "uzunluq": 0.78, "reng": "#e67e22", "is_yeri": 0, "divar": false, "avadanliq": false, "qiymet": 3350 },
+      { "tip": "rack", "ad": "Server rack 19\"", "x": 0.72, "z": 6.9, "bucaq": 0, "en": 0.82, "uzunluq": 0.75, "reng": "#8e44ad", "is_yeri": 0, "divar": false, "avadanliq": true, "qiymet": 12300 },
+      { "tip": "ups", "ad": "UPS", "x": 1.58, "z": 6.9, "bucaq": 0, "en": 0.78, "uzunluq": 0.75, "reng": "#7d3c98", "is_yeri": 0, "divar": false, "avadanliq": true, "qiymet": 2800 },
+      { "tip": "nas", "ad": "NAS — yedəkləmə", "x": 2.38, "z": 6.9, "bucaq": 0, "en": 0.5, "uzunluq": 0.5, "reng": "#a569bd", "is_yeri": 0, "divar": false, "avadanliq": true, "qiymet": 3400 },
+      { "tip": "byod", "ad": "BYOD masası — 6 yer", "x": 11, "z": 4, "bucaq": 0, "en": 1.45, "uzunluq": 1.75, "reng": "#c0392b", "is_yeri": 6, "divar": false, "avadanliq": false, "qiymet": 1400 },
+      { "tip": "gpu", "ad": "AI / GPU stansiyası", "x": 11.6, "z": 1.6, "bucaq": -90, "en": 1.2, "uzunluq": 0.7, "reng": "#9b59b6", "is_yeri": 0, "divar": false, "avadanliq": false, "qiymet": 6200 },
+      { "tip": "iot", "ad": "IoT skamyası — 6 yer", "x": 1.9, "z": 0.58, "bucaq": 0, "en": 3.15, "uzunluq": 0.58, "reng": "#16a085", "is_yeri": 6, "divar": false, "avadanliq": false, "qiymet": 3800 },
+      { "tip": "printer", "ad": "3D printer + MFP", "x": 4.95, "z": 0.58, "bucaq": 0, "en": 1.35, "uzunluq": 0.58, "reng": "#7f8c8d", "is_yeri": 0, "divar": false, "avadanliq": true, "qiymet": 2200 },
+      { "tip": "cabinet", "ad": "Şkaf", "x": 12.22, "z": 6.6, "bucaq": 90, "en": 0.9, "uzunluq": 0.5, "reng": "#95a5a6", "is_yeri": 0, "divar": false, "avadanliq": true, "qiymet": 900 },
+      { "tip": "panel", "ad": "İnteraktiv panel 86\"", "x": 5, "z": 7.5, "bucaq": 180, "en": 2, "uzunluq": 0.12, "reng": "#2c3e50", "is_yeri": 0, "divar": true, "avadanliq": false, "qiymet": 5200 },
+      { "tip": "screen55", "ad": "Komanda ekranı 55\"", "x": 12.5, "z": 4.6, "bucaq": -90, "en": 1.25, "uzunluq": 0.1, "reng": "#2c3e50", "is_yeri": 0, "divar": true, "avadanliq": false, "qiymet": 1100 },
+      { "tip": "ac", "ad": "Kondisioner", "x": 0, "z": 3.6, "bucaq": 90, "en": 1, "uzunluq": 0.26, "reng": "#85c1e9", "is_yeri": 0, "divar": true, "avadanliq": false, "qiymet": 1400 },
+      { "tip": "ac", "ad": "Kondisioner", "x": 12.5, "z": 6.6, "bucaq": -90, "en": 1, "uzunluq": 0.26, "reng": "#85c1e9", "is_yeri": 0, "divar": true, "avadanliq": false, "qiymet": 1400 }
+    ]
+  }
+}
